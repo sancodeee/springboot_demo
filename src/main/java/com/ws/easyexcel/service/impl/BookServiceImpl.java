@@ -36,11 +36,8 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements Bo
         // 写法一
         // EasyExcel.write(response.getOutputStream(), Book.class).sheet("书籍信息数据").doWrite(bookList);
         // 写法二
-        EasyExcel.write(response.getOutputStream(), Book.class).sheet("书籍信息数据").doWrite(() -> {
-            // 查询数据库
-            return list();
-        });
-
+        // 查询数据库
+        EasyExcel.write(response.getOutputStream(), Book.class).sheet("书籍信息数据").doWrite(this::list);
     }
 
 }
