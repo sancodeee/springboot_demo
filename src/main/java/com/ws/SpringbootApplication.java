@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2024/05/19
  */
 @MapperScan("com.ws.*.mapper")
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.ws")
 public class SpringbootApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringbootApplication.class, args);
