@@ -15,6 +15,12 @@ import java.io.IOException;
  */
 public interface BookService extends IService<Book> {
 
+    /**
+     * excel导出
+     *
+     * @param response 响应
+     * @throws IOException ioexception
+     */
     void export(HttpServletResponse response) throws IOException;
 
 }

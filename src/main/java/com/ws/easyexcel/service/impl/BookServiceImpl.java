@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 书服务实现
@@ -26,7 +27,7 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements Bo
         // 设置响应头
         response.setContentType("application/vnd.ms-excel");
         response.setCharacterEncoding("utf-8");
-        String fileName = URLEncoder.encode("书籍信息数据", "UTF-8");
+        String fileName = URLEncoder.encode("书籍信息数据", StandardCharsets.UTF_8);
         response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
 
         // 查询数据库 获取书籍信息
