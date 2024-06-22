@@ -14,12 +14,20 @@ spring:
       max-request-size: 100MB
 
 # 配置mybatis实体和xml映射
-mybatis:
+mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.example.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
+
+
+logging:
+  level:
+    org:
+      springframework=DEBUG:
+    com:
+      ws=DEBUG:
 
 # 分页
 pagehelper:

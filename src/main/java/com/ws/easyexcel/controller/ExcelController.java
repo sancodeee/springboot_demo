@@ -1,12 +1,13 @@
 package com.ws.easyexcel.controller;
 
+import com.ws.common.annotation.AroundLog;
 import com.ws.easyexcel.service.BookService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -22,6 +23,7 @@ public class ExcelController {
 
     private final BookService bookService;
 
+    @AroundLog
     @GetMapping("/export")
     public void exportExcel(HttpServletResponse response) throws IOException {
         bookService.export(response);

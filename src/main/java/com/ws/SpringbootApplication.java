@@ -1,5 +1,6 @@
 package com.ws;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author wangsen
  * @date 2024/05/19
  */
+@MapperScan("com.ws.*.mapper")
 @SpringBootApplication
 public class SpringbootApplication {
     public static void main(String[] args) {
