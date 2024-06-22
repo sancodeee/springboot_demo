@@ -49,7 +49,8 @@ public class SqlInterceptor implements Interceptor {
             // 计算SQL执行耗时
             long costTime = endTime - startTime;
             // 打印SQL执行耗时和SQL语句
-            log.info("\n 执行SQL耗时：{}ms \n 执行SQL：{}", costTime, sql);
+            log.info("\n 执行SQL：{} \n 执行SQL耗时：{}(ms) \n=========================================================================",
+                    sql, costTime);
         }
         // 返回原始方法执行结果
         return result;
@@ -114,9 +115,9 @@ public class SqlInterceptor implements Interceptor {
      */
     private static String getParameterValue(Object object) {
         String value = "";
-        if (object instanceof String){
+        if (object instanceof String) {
             value = "'" + object.toString() + "'";
-        }else if (object instanceof Date){
+        } else if (object instanceof Date) {
             DateFormat format = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, Locale.CHINA);
             value = "'" + format.format((Date) object) + "'";
         } else if (!ObjectUtils.isEmpty(object)) {
