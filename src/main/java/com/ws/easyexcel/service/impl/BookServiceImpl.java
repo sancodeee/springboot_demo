@@ -64,7 +64,7 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements Bo
         lambdaQueryWrapper.apply("1 = 1");
         lambdaQueryWrapper.eq(StringUtils.isNotBlank(bookListBO.getAuthorId()), Book::getAuthorId, bookListBO.getAuthorId());
         // 传入查询条件
-        return baseMapper.selectBooksListTwo(bookListBO, lambdaQueryWrapper);
+        return baseMapper.selectBooksList(bookListBO, lambdaQueryWrapper);
     }
 
 }
