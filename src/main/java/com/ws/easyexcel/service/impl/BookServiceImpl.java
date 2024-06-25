@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ws.easyexcel.entity.bo.BookListBO;
 import com.ws.easyexcel.entity.po.Book;
+import com.ws.easyexcel.entity.vo.BookListVO;
 import com.ws.easyexcel.mapper.BookMapper;
 import com.ws.easyexcel.service.BookService;
 import jakarta.servlet.http.HttpServletResponse;
@@ -51,18 +52,19 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements Bo
      * @return {@link List }<{@link Book }>
      */
     @Override
-    public List<Book> queryBookList(BookListBO bookListBO) {
+    public List<BookListVO> queryBookList(BookListBO bookListBO) {
 
         // 构造条件查询，支持常规QueryWrapper
         QueryWrapper<Book> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like(StringUtils.isNotBlank(bookListBO.getAuthor()), "author", bookListBO.getAuthor());
+        queryWrapper.eq(StringUtils.isNotBlank(bookListBO.getAuthorId()), "author_id", bookListBO.getAuthorId());
 
         // 同样支持LambdaQueryWrapper
         LambdaQueryWrapper<Book> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.like(StringUtils.isNotBlank(bookListBO.getAuthor()), Book::getAuthor, bookListBO.getAuthor());
-
+        // 保证sql始终有where关键字
+        lambdaQueryWrapper.apply("1 = 1");
+        lambdaQueryWrapper.eq(StringUtils.isNotBlank(bookListBO.getAuthorId()), Book::getAuthorId, bookListBO.getAuthorId());
         // 传入查询条件
-        return baseMapper.selectBooksList(bookListBO, lambdaQueryWrapper);
+        return baseMapper.selectBooksListTwo(bookListBO, lambdaQueryWrapper);
     }
 
 }

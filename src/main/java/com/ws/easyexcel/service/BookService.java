@@ -3,6 +3,7 @@ package com.ws.easyexcel.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ws.easyexcel.entity.bo.BookListBO;
 import com.ws.easyexcel.entity.po.Book;
+import com.ws.easyexcel.entity.vo.BookListVO;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
@@ -31,7 +32,7 @@ public interface BookService extends IService<Book> {
      * @param bookListBO 书单
      * @return {@link List }<{@link Book }>
      */
-    List<Book> queryBookList(BookListBO bookListBO);
+    List<BookListVO> queryBookList(BookListBO bookListBO);
 
 
 }

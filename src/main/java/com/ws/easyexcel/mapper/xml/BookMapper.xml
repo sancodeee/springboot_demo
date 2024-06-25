@@ -2,9 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ws.easyexcel.mapper.BookMapper">
 
-    <select id="selectBooksList" parameterType="com.ws.easyexcel.entity.bo.BookListBO" resultType="com.ws.easyexcel.entity.po.Book">
-        select * from book b
-        <where>
+    <select id="selectBooksList" parameterType="com.ws.easyexcel.entity.bo.BookListBO" resultType="com.ws.easyexcel.entity.vo.BookListVO">
+        select b.id as id,
+               b.name as name,
+               b.type as type,
+               b.description as description,
+               a.name as authorName
+        from book b
+            LEFT JOIN author a ON b.author_id = a.id
+        <if test="ew != null and ew.sqlSegment != null and ew.sqlSegment != ''">
+            ${ew.customSqlSegment}
+        </if>
+        <if test="bookListBO != null">
             <if test="bookListBO.name != null and bookListBO.name != ''">
                 and b.name like concat('%', #{bookListBO.name}, '%')
             </if>
@@ -14,8 +23,37 @@
             <if test="bookListBO.description != null and bookListBO.description != ''">
                 and b.description like concat('%', #{bookListBO.description}, '%')
             </if>
-        </where>
-        ${ew.customSqlSegment}
+        </if>
+
     </select>
 
+    <select id="selectBooksListTwo" resultType="com.ws.easyexcel.entity.vo.BookListVO">
+        select b.id as id,
+        b.name as name,
+        b.type as type,
+        b.description as description,
+        a.name as authorName
+        from book b
+        LEFT JOIN author a ON b.author_id = a.id
+        <where>
+            <if test="bookListBO != null">
+                <if test="bookListBO.name != null and bookListBO.name != ''">
+                    and b.name like concat('%', #{bookListBO.name}, '%')
+                </if>
+                <if test="bookListBO.type != null and bookListBO.type != ''">
+                    and b.type like concat('%', #{bookListBO.type}, '%')
+                </if>
+                <if test="bookListBO.description != null and bookListBO.description != ''">
+                    and b.description like concat('%', #{bookListBO.description}, '%')
+                </if>
+            </if>
+        </where>
+
+        <trim prefix="AND" prefixOverrides="WHERE">
+            <if test="ew != null and ew.sqlSegment != null and ew.sqlSegment != ''">
+                ${ew.customSqlSegment}
+            </if>
+        </trim>
+
+    </select>
 </mapper>

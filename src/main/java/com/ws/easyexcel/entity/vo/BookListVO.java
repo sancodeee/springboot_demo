@@ -1,15 +1,20 @@
-package com.ws.easyexcel.entity.bo;
+package com.ws.easyexcel.entity.vo;
 
 import lombok.Data;
 
 /**
- * 书籍列表查询入参
+ * 书单vo
  *
  * @author wangsen
  * @date 2024/06/25
  */
 @Data
-public class BookListBO {
+public class BookListVO {
+
+    /**
+     * id
+     */
+    private Long id;
 
     /**
      * 名字
@@ -27,8 +32,8 @@ public class BookListBO {
     private String description;
 
     /**
-     * 作者id
+     * 作者
      */
-    private String authorId;
+    private String authorName;
 
 }
