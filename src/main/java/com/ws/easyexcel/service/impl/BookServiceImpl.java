@@ -1,6 +1,7 @@
 package com.ws.easyexcel.service.impl;
 
 import com.alibaba.excel.EasyExcel;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -51,11 +52,17 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements Bo
      */
     @Override
     public List<Book> queryBookList(BookListBO bookListBO) {
-        // 构造条件查询
+
+        // 构造条件查询，支持常规QueryWrapper
         QueryWrapper<Book> queryWrapper = new QueryWrapper<>();
         queryWrapper.like(StringUtils.isNotBlank(bookListBO.getAuthor()), "author", bookListBO.getAuthor());
+
+        // 同样支持LambdaQueryWrapper
+        LambdaQueryWrapper<Book> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.like(StringUtils.isNotBlank(bookListBO.getAuthor()), Book::getAuthor, bookListBO.getAuthor());
+
         // 传入查询条件
-        return baseMapper.selectBooksList(bookListBO, queryWrapper);
+        return baseMapper.selectBooksList(bookListBO, lambdaQueryWrapper);
     }
 
 }
