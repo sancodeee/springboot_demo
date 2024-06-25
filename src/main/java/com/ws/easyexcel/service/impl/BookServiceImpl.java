@@ -34,12 +34,10 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements Bo
         String fileName = URLEncoder.encode("书籍信息数据", StandardCharsets.UTF_8);
         response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
 
-        // 查询数据库 获取书籍信息
-        // List<Book> bookList = list();
-
         // 使用easyExcel写入
         // 写法一
         // EasyExcel.write(response.getOutputStream(), Book.class).sheet("书籍信息数据").doWrite(bookList);
+
         // 写法二
         // 查询数据库
         EasyExcel.write(response.getOutputStream(), Book.class).sheet("书籍信息数据").doWrite(this::list);
@@ -53,8 +51,10 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements Bo
      */
     @Override
     public List<Book> queryBookList(BookListBO bookListBO) {
+        // 构造条件查询
         QueryWrapper<Book> queryWrapper = new QueryWrapper<>();
         queryWrapper.like(StringUtils.isNotBlank(bookListBO.getAuthor()), "author", bookListBO.getAuthor());
+        // 传入查询条件
         return baseMapper.selectBooksList(bookListBO, queryWrapper);
     }
 
