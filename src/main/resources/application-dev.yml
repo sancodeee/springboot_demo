@@ -15,11 +15,11 @@ spring:
 
 # 配置mybatis实体和xml映射
 mybatis-plus:
-  mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.ws.*.entity.po
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true  # 是否开启驼峰命名映射（若开启会自动将表中下划线命名的字段映射为类中驼峰命名的字段）
+  mapper-locations: classpath*:com/ws/**/mapper/**/*.xml
 
 # 配置日志级别
 logging:

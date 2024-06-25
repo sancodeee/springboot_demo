@@ -53,4 +53,11 @@ public class Book {
     @ExcelProperty(value = {"书籍信息", "书籍描述"}, index = 3)
     private String description;
 
+    /**
+     * 作者
+     */
+    @ColumnWidth(50)
+    @ExcelProperty(value = {"书籍信息", "书籍描述"}, index = 4)
+    private String author;
+
 }

@@ -1,7 +1,10 @@
 package com.ws.easyexcel.service.impl;
 
 import com.alibaba.excel.EasyExcel;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ws.easyexcel.entity.bo.BookListBO;
 import com.ws.easyexcel.entity.po.Book;
 import com.ws.easyexcel.mapper.BookMapper;
 import com.ws.easyexcel.service.BookService;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 /**
  * 书服务实现
@@ -39,6 +43,19 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements Bo
         // 写法二
         // 查询数据库
         EasyExcel.write(response.getOutputStream(), Book.class).sheet("书籍信息数据").doWrite(this::list);
+    }
+
+    /**
+     * 查询图书列表
+     *
+     * @param bookListBO 书单
+     * @return {@link List }<{@link Book }>
+     */
+    @Override
+    public List<Book> queryBookList(BookListBO bookListBO) {
+        QueryWrapper<Book> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like(StringUtils.isNotBlank(bookListBO.getAuthor()), "author", bookListBO.getAuthor());
+        return baseMapper.selectBooksList(bookListBO, queryWrapper);
     }
 
 }

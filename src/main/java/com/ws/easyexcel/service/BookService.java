@@ -1,10 +1,12 @@
 package com.ws.easyexcel.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ws.easyexcel.entity.bo.BookListBO;
 import com.ws.easyexcel.entity.po.Book;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -22,5 +24,14 @@ public interface BookService extends IService<Book> {
      * @throws IOException ioexception
      */
     void export(HttpServletResponse response) throws IOException;
+
+    /**
+     * 查询图书列表
+     *
+     * @param bookListBO 书单
+     * @return {@link List }<{@link Book }>
+     */
+    List<Book> queryBookList(BookListBO bookListBO);
+
 
 }
