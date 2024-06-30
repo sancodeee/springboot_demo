@@ -4,6 +4,7 @@ import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ws.easyexcel.entity.bo.BookListBO;
 import com.ws.easyexcel.entity.po.Book;
@@ -55,14 +56,16 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements Bo
     public List<BookListVO> queryBookList(BookListBO bookListBO) {
 
         // 构造条件查询，支持常规QueryWrapper
-        QueryWrapper<Book> queryWrapper = new QueryWrapper<>();
+        QueryWrapper<Book> queryWrapper = Wrappers.query();
         queryWrapper.eq(StringUtils.isNotBlank(bookListBO.getAuthorId()), "author_id", bookListBO.getAuthorId());
 
         // 同样支持LambdaQueryWrapper
-        LambdaQueryWrapper<Book> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        LambdaQueryWrapper<Book> lambdaQueryWrapper = Wrappers.lambdaQuery();
         // 保证sql始终有where关键字
         lambdaQueryWrapper.apply("1 = 1");
         lambdaQueryWrapper.eq(StringUtils.isNotBlank(bookListBO.getAuthorId()), Book::getAuthorId, bookListBO.getAuthorId());
+        // {0}是占位符
+        lambdaQueryWrapper.apply("a.age = {0}", 18);
         // 传入查询条件
         return baseMapper.selectBooksList(bookListBO, lambdaQueryWrapper);
     }

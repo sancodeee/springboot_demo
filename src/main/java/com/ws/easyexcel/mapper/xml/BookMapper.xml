@@ -4,15 +4,13 @@
 
     <select id="selectBooksList" parameterType="com.ws.easyexcel.entity.bo.BookListBO" resultType="com.ws.easyexcel.entity.vo.BookListVO">
         select b.id as id,
-               b.name as name,
-               b.type as type,
-               b.description as description,
-               a.name as authorName
+        b.name as name,
+        b.type as type,
+        b.description as description,
+        a.name as authorName
         from book b
-            LEFT JOIN author a ON b.author_id = a.id
-        <if test="ew != null and ew.sqlSegment != null and ew.sqlSegment != ''">
-            ${ew.customSqlSegment}
-        </if>
+        LEFT JOIN author a ON b.author_id = a.id
+        ${ew.customSqlSegment}
         <if test="bookListBO != null">
             <if test="bookListBO.name != null and bookListBO.name != ''">
                 and b.name like concat('%', #{bookListBO.name}, '%')
@@ -24,7 +22,6 @@
                 and b.description like concat('%', #{bookListBO.description}, '%')
             </if>
         </if>
-
     </select>
 
     <select id="selectBooksListTwo" resultType="com.ws.easyexcel.entity.vo.BookListVO">
