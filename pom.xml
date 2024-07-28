@@ -43,8 +43,14 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatis.plus.version}</version> <!-- 确保版本正确 -->
+            <version>${mybatis.plus.version}</version>
         </dependency>
+        <!-- rabbitMQ -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
         <!-- 常用工具 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
