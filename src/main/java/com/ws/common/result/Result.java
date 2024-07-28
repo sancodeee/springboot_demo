@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,7 +21,9 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor
 public class Result<T> implements Serializable {
 
-    private static final long serialVersionUID = 2614977424476745219L;
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     /**
      * 是否成功
      */
