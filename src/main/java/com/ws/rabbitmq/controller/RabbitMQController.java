@@ -1,4 +1,4 @@
-package com.ws.RabbitMQ.controller;
+package com.ws.rabbitmq.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

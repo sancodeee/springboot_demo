@@ -1,4 +1,4 @@
-package com.ws.RabbitMQ.producer;
+package com.ws.rabbitmq.producer;
 
 public interface ProducerOneService {
 }

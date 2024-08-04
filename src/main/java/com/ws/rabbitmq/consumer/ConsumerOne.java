@@ -1,4 +1,4 @@
-package com.ws.RabbitMQ.consumer;
+package com.ws.rabbitmq.consumer;
 
 /**
  * 消费者一
