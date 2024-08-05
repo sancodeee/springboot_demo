@@ -24,7 +24,7 @@ public class threadPoolServiceImpl {
         // 空闲线程存活时间单位
         TimeUnit unit = TimeUnit.SECONDS;
         // 任务等待队列
-        BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<>(100);
+        BlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<>(100);
 
         // 自定义线程工厂
         ThreadFactory threadFactory = new ThreadFactory() {
@@ -38,8 +38,9 @@ public class threadPoolServiceImpl {
 
         // 拒绝策略
         ThreadPoolExecutor.AbortPolicy abortPolicy = new ThreadPoolExecutor.AbortPolicy();
+        ThreadPoolExecutor.CallerRunsPolicy callerRunsPolicy = new ThreadPoolExecutor.CallerRunsPolicy();
 
-        ExecutorService executor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory, abortPolicy);
+        ExecutorService executor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory, callerRunsPolicy);
 
     }
 

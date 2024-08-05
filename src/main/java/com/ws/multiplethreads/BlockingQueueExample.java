@@ -2,6 +2,7 @@ package com.ws.multiplethreads;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * 线程间通信
@@ -16,7 +17,7 @@ public class BlockingQueueExample {
     public static void main(String[] args) {
 
         // 阻塞队列
-        BlockingQueue<Integer> queue = new ArrayBlockingQueue<Integer>(10);
+        BlockingQueue<Integer> queue = new LinkedBlockingQueue<>(10);
 
         // 生产者线程
         Thread producer = new Thread(() -> {
@@ -58,6 +59,5 @@ public class BlockingQueueExample {
         consumer.start();
 
     }
-
 
 }

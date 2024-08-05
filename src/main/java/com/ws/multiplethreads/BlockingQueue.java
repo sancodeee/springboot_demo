@@ -1,6 +1,6 @@
 package com.ws.multiplethreads;
 
-import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * 阻塞队列示例
@@ -14,7 +14,9 @@ public class BlockingQueue {
     public static void main(String[] args) {
 
         // 阻塞队列
-        ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<>(10);
+        // ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<>(10);
+        // 链表型队列，方便增删 进队出队操作
+        LinkedBlockingQueue<Integer> queue = new LinkedBlockingQueue<>(10);
 
         // 生产者线程
         Thread producerOne = new Thread(() -> {
