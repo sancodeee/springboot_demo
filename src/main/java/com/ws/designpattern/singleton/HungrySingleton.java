@@ -1,4 +1,4 @@
-package com.ws.designpattern;
+package com.ws.designpattern.singleton;
 
 /**
  * 饥饿单例
