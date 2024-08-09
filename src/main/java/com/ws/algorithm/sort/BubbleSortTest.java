@@ -16,7 +16,7 @@ public class BubbleSortTest {
     public void test() {
         int[] arr = {64, 34, 25, 12, 22, 11, 90};
         bubbleSort(arr);
-        log.info("排序结果:{}", arr);
+        log.info("排序结果:{}", arr);     
 
     }
 
