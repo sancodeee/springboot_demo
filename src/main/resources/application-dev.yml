@@ -15,10 +15,12 @@ spring:
 
   # rabbitMQ配置
   rabbitmq:
-    host: localhost
+    host: 192.168.0.175
     port: 5672
-    username: guest
-    password: guest
+    virtual-host: /wangsen
+    username: wangsen
+    password: 123456
+
 
 # 配置mybatis实体和xml映射
 mybatis-plus:

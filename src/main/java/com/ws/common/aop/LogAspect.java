@@ -58,7 +58,7 @@ public class LogAspect {
         try {
             addLog(joinPoint, "", 0);
         } catch (Exception e) {
-            log.error("doBefore日志记录异常，异常信息为:", e);
+            log.error("doBefore日志记录异常，异常信息:", e);
         }
     }
 

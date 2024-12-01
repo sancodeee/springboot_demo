@@ -27,6 +27,7 @@
         <lombok.version>1.18.32</lombok.version>
         <mysql.connector.java.version>8.0.33</mysql.connector.java.version>
         <easyexcel.version>4.0.1</easyexcel.version>
+        <rabbitmq.version>3.4.0</rabbitmq.version>
     </properties>
 
     <dependencies>
@@ -49,6 +50,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
+            <version>${rabbitmq.version}</version>
         </dependency>
         <!-- websocket -->
         <dependency>
